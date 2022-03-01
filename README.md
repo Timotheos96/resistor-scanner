@@ -1,5 +1,5 @@
 # resistor_identifier
-
+!!!!!!!!!!!!STILL UNDER CONSTRUCTION!!!!!!!!!!!!!!!!
 A new Flutter project that will identify the value of a resistor by scanning it.
 
 ## Resistor Scanner
