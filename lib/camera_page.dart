@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +51,7 @@ class _CameraPageState extends State<CameraPage> {
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: SizedBox(
-              height: 400,
+              height: 500,
               width: 400,
               child: CameraPreview(controller),
             ),
@@ -57,21 +59,22 @@ class _CameraPageState extends State<CameraPage> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
+          child: ElevatedButton.icon(
+            icon: Icon(Icons.camera_alt_rounded),
+            label: Text("Capture"),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color(0xFF355c7d))),
             onPressed: () async {
               pictureFile = await controller.takePicture();
               setState(() {});
             },
-            child: const Text('Capture Image'),
           ),
         ),
         if (pictureFile != null)
-          Image.network(
-            pictureFile!.path,
-            height: 200,
+          Image.file(
+            File(pictureFile!.path),
+            height: 100,
           )
-        //Android/iOS
-        // Image.file(File(pictureFile!.path)))
       ],
     );
   }

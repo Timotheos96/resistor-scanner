@@ -9,21 +9,49 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            await availableCameras().then(
-              (value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CameraPage(
-                    cameras: value,
-                  ),
+      body: DecoratedBox(
+        position: DecorationPosition.background,
+        decoration: new BoxDecoration(
+            image: new DecorationImage(
+                image: new AssetImage("assets/images/bgImageRes.png"),
+                fit: BoxFit.cover)),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFFf8b195))),
+                onPressed: () async {
+                  await availableCameras().then(
+                    (value) => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CameraPage(
+                          cameras: value,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Launch Camera',
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
-            );
-          },
-          child: const Text('Launch Camera'),
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFF355c7d))),
+                onPressed: () async {},
+                child: const Text(
+                  'Browse image',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
